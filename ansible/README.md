@@ -1,23 +1,41 @@
 # Ansible
-dockerを使ったテスト時にはMakefile内の`IS_TEST=false`を`IS_TEST=true`に変更する。
 
-## 接続確認
-pingを使った接続確認ができる。
+# Edit before use
+
+- `hosts.yml`
+    - grep `TODO` comment
+    - Enter the ip of the target server
+        - `.all.hosts.s1.ansible_host`
+        - `.all.hosts.s2.ansible_host`
+        - `.all.hosts.s3.ansible_host`
+
+# How to use
+If you want to use test playbook with docker, change the Makefile `IS_TEST=false` to `IS_TEST=true`.
+
+## Check connection
+Connection check with ping module.
 
 ```
 $ make ping
 ```
 
+## Create backup
+Create the backup of `/home/isucon` to `../workspace/backup`.
+
+```
+$ make backup
+```
+
 ## Test
-dockerを使ってテストができるようにしている。
+You can test playbooks with docker.
 
 
-### テスト対象のdocker imageのビルド
+### Build test target docker image
 ```
 $ make docker-build
 ```
 
-### テスト対象のdocker imageの開始
+### Run test target docker container
 ```
 $ make docker-run
 ```
