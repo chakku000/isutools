@@ -1,0 +1,25 @@
+---
+- name: Ensure /tmp/isucon_backup direcotry exists
+  file:
+    path: /tmp/isucon_backup
+    state: directory
+
+- name: Set current timestamp
+  set_fact:
+    current_time: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
+
+- name: Create an arvhie of home
+  community.general.archive:
+    path: /home/isucon
+    dest: "/tmp/isucon_backup/{{current_time}}.tar.gz"
+
+- name: Fetch the archive to local machine
+  fetch:
+    src: "/tmp/isucon_backup/{{current_time}}.tar.gz"
+    dest: "../workspace/backup/{{inventory_hostname}}_{{current_time}}.tar.gz"
+    flat: yes
+
+- name: Cleanup the archive
+  file:
+    path: "/tmp/isucon_backup/{{current_time}}.tar.gz"
+    state: absent

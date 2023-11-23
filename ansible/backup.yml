@@ -1,0 +1,5 @@
+---
+- name: connection check
+  hosts: all
+  roles:
+  - backup

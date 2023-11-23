@@ -1,15 +1,21 @@
 IS_TEST=true
 
+# IS_TESTがtrueの場合は実行対象をisuansibleに限定する
 ifeq ($(IS_TEST),true)
 	LIMIT_OPTION=--limit isuansible
 else
 	LIMIT_OPTION=
 endif
 
+ANSIBLE_PLAYBOOK=ansible-playbook -i hosts.yml
+
+.PHONY: backup
+backup:
+	$(ANSIBLE_PLAYBOOK) backup.yml $(LIMIT_OPTION)
 
 .PHONY: ping
 ping:
-	ansible-playbook -i hosts.yml ping.yml $(LIMIT_OPTION)
+	$(ANSIBLE_PLAYBOOK) ping.yml $(LIMIT_OPTION)
 
 # >> Docker for test playbooks
 .PHONY: docker-run
