@@ -13,6 +13,10 @@ ANSIBLE_PLAYBOOK=ansible-playbook -i hosts.yml
 backup:
 	$(ANSIBLE_PLAYBOOK) backup.yml $(LIMIT_OPTION)
 
+.PHONY: sshkeys
+sshkeys:
+	$(ANSIBLE_PLAYBOOK) sshkeys.yml $(LIMIT_OPTION)
+
 .PHONY: ping
 ping:
 	$(ANSIBLE_PLAYBOOK) ping.yml $(LIMIT_OPTION)

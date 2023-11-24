@@ -1,0 +1,5 @@
+---
+- name: Copy ssh keys
+  hosts: all
+  roles:
+  - sshkeys

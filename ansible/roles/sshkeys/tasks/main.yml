@@ -1,0 +1,14 @@
+---
+- name: print home
+  debug:
+    msg: "{{ isucon_base_path }}"
+- name: Ensure .ssh directory exists
+  file:
+    path: "{{ isucon_base_path }}/.ssh"
+    state: directory
+    mode: '0700'
+- name: Copy private key to host
+  copy:
+    src: ../workspace/ssh/id_ed25519
+    dest: "{{ isucon_base_path }}/.ssh/id_ed25519"
+    mode: '0600'
