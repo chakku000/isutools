@@ -1,2 +1,3 @@
 ---
 isucon_base_path: /home/isucon
+nginx_conf_path: ../../isucon13/nginx/nginx.conf

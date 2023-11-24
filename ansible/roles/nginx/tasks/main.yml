@@ -24,6 +24,15 @@
     path: "/var/log/nginx/access.log"
     mode: '0777'
 
+- name: Copy nginx conf
+  copy:
+    src: "{{ nginx_conf_path }}"
+    dest: /etc/nginx/nginx.conf
+    # 下記は必要かわからない
+    #owner: root
+    #group: root
+    #mode: '0644'
+
 - name: Reload nginx
   command: nginx -s reload
 
