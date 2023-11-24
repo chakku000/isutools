@@ -11,15 +11,33 @@
 - name: Create an arvhie of home
   community.general.archive:
     path: "{{ isucon_base_path }}"
-    dest: "/tmp/isucon_backup/{{current_time}}.tar.gz"
+    dest: "/tmp/isucon_backup/home_{{current_time}}.tar.gz"
 
 - name: Fetch the archive to local machine
   fetch:
-    src: "/tmp/isucon_backup/{{current_time}}.tar.gz"
-    dest: "../workspace/backup/{{inventory_hostname}}_{{current_time}}.tar.gz"
+    src: "/tmp/isucon_backup/home_{{current_time}}.tar.gz"
+    dest: "../workspace/backup/home_{{inventory_hostname}}_{{current_time}}.tar.gz"
     flat: yes
 
 - name: Cleanup the archive
   file:
-    path: "/tmp/isucon_backup/{{current_time}}.tar.gz"
+    path: "/tmp/isucon_backup/home_{{current_time}}.tar.gz"
     state: absent
+
+# >> Backup of Nginx
+- name: Create an archive of nginx
+  community.general.archive:
+    path: "/etc/nginx"
+    dest: "/tmp/isucon_backup/nginx_{{current_time}}.tar.gz"
+
+- name: Fetch the archive of nginx to local machine
+  fetch:
+    src: "/tmp/isucon_backup/nginx_{{current_time}}.tar.gz"
+    dest: "../workspace/backup/nginx_{{inventory_hostname}}_{{current_time}}.tar.gz"
+    flat: yes
+
+- name: Cleanup the archive
+  file:
+    path: "/tmp/isucon_backup/nginx_{{current_time}}.tar.gz"
+    state: absent
+# << Backup of Nginx
