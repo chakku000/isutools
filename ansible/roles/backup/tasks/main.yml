@@ -10,7 +10,7 @@
 
 - name: Create an arvhie of home
   community.general.archive:
-    path: /home/isucon
+    path: "{{ isucon_base_path }}"
     dest: "/tmp/isucon_backup/{{current_time}}.tar.gz"
 
 - name: Fetch the archive to local machine

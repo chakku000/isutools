@@ -1,5 +1,5 @@
 ---
-- name: connection check
+- name: Backup home
   hosts: all
   roles:
   - backup
