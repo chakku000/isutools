@@ -1,0 +1,7 @@
+---
+- name: Reload nginx
+  hosts: all
+  roles:
+  - role: nginx
+    become: yes
+    become_method: su

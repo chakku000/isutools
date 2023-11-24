@@ -1,0 +1,34 @@
+---
+- name: Set current timestamp
+  set_fact:
+    current_time: "{{ lookup('pipe', 'date +%Y-%m-%d-%H-%M') }}"
+
+- name: Backup nginx logs to local
+  fetch:
+    src: "/var/log/nginx/access.log"
+    dest: "../workspace/nginx/{{current_time}}_access.log"
+    flat: yes
+
+- name: Delete access.log
+  file:
+    path: "/var/log/nginx/access.log"
+    state: absent
+
+- name: Create access.log
+  file:
+    path: "/var/log/nginx/access.log"
+    state: touch
+
+- name: Set permission to 777
+  file:
+    path: "/var/log/nginx/access.log"
+    mode: '0777'
+
+- name: Reload nginx
+  command: nginx -s reload
+
+# nginx -s reloadで十分なはず?
+#- name: Restart nginx
+#  systemd:
+#    name: nginx
+#    state: restarted

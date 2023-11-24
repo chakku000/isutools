@@ -17,6 +17,10 @@ backup:
 sshkeys:
 	$(ANSIBLE_PLAYBOOK) sshkeys.yml $(LIMIT_OPTION)
 
+.PHONY: nginx
+nginx:
+	$(ANSIBLE_PLAYBOOK) nginx.yml $(LIMIT_OPTION)
+
 .PHONY: ping
 ping:
 	$(ANSIBLE_PLAYBOOK) ping.yml $(LIMIT_OPTION)
