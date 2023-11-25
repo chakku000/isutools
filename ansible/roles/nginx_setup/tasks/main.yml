@@ -1,0 +1,14 @@
+---
+- name: Backup nginx.conf
+  command: mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+  args:
+    removes: /etc/nginx/nginx.conf
+- name: Create a symbolic link for nginx.conf
+  file:
+    src: /home/isucon/isucon13/nginx/nginx.conf
+    dest: /etc/nginx/nginx.conf
+    state: link
+- name: Restart Nginx to apply changes
+  systemd:
+    name: nginx
+    state: restarted
