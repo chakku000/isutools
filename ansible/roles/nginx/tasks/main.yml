@@ -6,7 +6,7 @@
 - name: Backup nginx logs to local
   fetch:
     src: "/var/log/nginx/access.log"
-    dest: "../workspace/nginx/{{current_time}}_access.log"
+    dest: "../workspace/nginx/{{inventory_hostname}}_{{current_time}}_access.log"
     flat: yes
 
 - name: Delete access.log

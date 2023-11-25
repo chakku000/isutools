@@ -1,0 +1,5 @@
+---
+- name: make build
+  command: bash -c "source /home/isucon/.local.env && make build"
+  args:
+    chdir: /home/isucon/isucon13/webapp/go

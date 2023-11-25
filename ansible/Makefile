@@ -23,6 +23,14 @@ sshkeys:
 nginx:
 	$(ANSIBLE_PLAYBOOK) nginx.yml $(LIMIT_OPTION)
 
+.PHONY: nginx_setup
+nginx_setup:
+	$(ANSIBLE_PLAYBOOK) nginx_setup.yml $(LIMIT_OPTION)
+
+.PHONY: build
+build:
+	$(ANSIBLE_PLAYBOOK) build.yml $(LIMIT_OPTION)
+
 .PHONY: pull
 pull:
 	$(ANSIBLE_PLAYBOOK) gitpull.yml $(LIMIT_OPTION)

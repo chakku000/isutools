@@ -1,0 +1,5 @@
+---
+- name: Build and Restart app
+  hosts: all
+  roles:
+  - role: build

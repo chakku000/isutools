@@ -2,6 +2,5 @@
 - name: Reload nginx
   hosts: all
   roles:
-  - role: gitpull
-  - role: nginx
+  - role: nginx_setup
     become: yes
