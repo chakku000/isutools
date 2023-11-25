@@ -1,4 +1,4 @@
-IS_TEST=true
+IS_TEST=false
 
 # IS_TESTがtrueの場合は実行対象をisuansibleに限定する
 ifeq ($(IS_TEST),true)
@@ -6,6 +6,8 @@ ifeq ($(IS_TEST),true)
 else
 	LIMIT_OPTION=
 endif
+
+LIMIT_OPTION=--limit s1
 
 ANSIBLE_PLAYBOOK=ansible-playbook -i hosts.yml
 
@@ -20,6 +22,10 @@ sshkeys:
 .PHONY: nginx
 nginx:
 	$(ANSIBLE_PLAYBOOK) nginx.yml $(LIMIT_OPTION)
+
+.PHONY: pull
+pull:
+	$(ANSIBLE_PLAYBOOK) gitpull.yml $(LIMIT_OPTION)
 
 .PHONY: ping
 ping:

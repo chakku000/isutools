@@ -1,0 +1,5 @@
+---
+- name: Git pull
+  hosts: all
+  roles:
+  - gitpull

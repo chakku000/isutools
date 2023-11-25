@@ -1,0 +1,7 @@
+---
+- name: git pull origin main
+  git:
+    repo: "git@github.com:chakku000/isucon13.git"
+    dest: "{{ isucon_base_path }}/isucon13"
+    version: main
+    update: yes
