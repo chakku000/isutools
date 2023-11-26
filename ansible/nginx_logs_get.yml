@@ -1,0 +1,6 @@
+---
+- name: Get nginx accesslog
+  hosts: all
+  roles:
+  - role: nginx_logs_get
+    become: yes

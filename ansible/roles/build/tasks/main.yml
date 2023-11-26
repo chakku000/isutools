@@ -3,3 +3,7 @@
   command: bash -c "source /home/isucon/.local.env && make build"
   args:
     chdir: /home/isucon/isucon13/webapp/go
+- name: Restart App
+  systemd:
+    name: isupipe-go
+    state: restarted
