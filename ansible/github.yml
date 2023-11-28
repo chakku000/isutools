@@ -1,0 +1,5 @@
+---
+- name: Setup Github repo
+  hosts: all
+  roles:
+  - github

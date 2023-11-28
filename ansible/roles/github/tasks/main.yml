@@ -1,0 +1,27 @@
+---
+- name: Check the status of local isucon git repo path
+  local_action:
+    module: stat
+    path: "{{ local_isucon_git_repo }}"
+  register: local_isucon_git_repo_stat
+
+- name: Fail if local isucon git repo not exists
+  fail:
+    msg: "Directory {{ local_isucon_git_repo }} not found"
+  when: not local_isucon_git_repo_stat.stat.exists
+
+- name: Create webapp directory to isucon repo
+  local_action:
+    module: file
+    path: "{{ local_isucon_git_repo }}/webapp"
+    state: directory
+
+- name: Copy target directory under webapp directory
+  synchronize:
+    src: "{{ isucon_base_path }}/webapp/{{ item }}"
+    dest: "{{ local_isucon_git_repo }}/webapp/{{ item }}"
+    mode: pull
+    rsync_opts:
+      - "--recursive"
+  loop: "{{ webapp_target_dir }}"
+  delegate_to: localhost

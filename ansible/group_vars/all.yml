@@ -1,3 +1,12 @@
 ---
+# Serverの$HOMEの場所
 isucon_base_path: /home/isucon
+
 nginx_conf_path: ../../isucon13/nginx/nginx.conf
+
+# webapp/以下で必要なディレクトリのリスト.
+# 例えば[go,sql]を指定しておけばwebapp/go, webapp/sqlをgithubで管理する
+webapp_target_dir: [go, sql]
+
+# ローカルのisucon用ディレクトリ
+local_isucon_git_repo: ../../isucon14
