@@ -9,6 +9,10 @@ endif
 
 ANSIBLE_PLAYBOOK=ansible-playbook -i hosts.yml
 
+.PHONY: github
+github:
+	$(ANSIBLE_PLAYBOOK) github.yml $(LIMIT_OPTION)
+
 .PHONY: backup
 backup:
 	$(ANSIBLE_PLAYBOOK) backup.yml $(LIMIT_OPTION)
