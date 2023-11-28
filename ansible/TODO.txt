@@ -1,0 +1,1 @@
+github roleの動作確認をする (ansible_connection: dockerで動かない)
